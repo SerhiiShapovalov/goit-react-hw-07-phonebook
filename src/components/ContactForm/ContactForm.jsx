@@ -73,7 +73,7 @@ function ContactForm({ onClose }) {
   );
 }
 
-ContactForm.proptype = {
+ContactForm.prototype = {
   onSubmit: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
 };
