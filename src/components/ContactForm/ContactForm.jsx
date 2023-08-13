@@ -25,8 +25,8 @@ function ContactForm({ onClose }) {
       window.alert(`${name} is already in the contact list.`);
       return;
     } else {
-      await dispatch(addContact(newElement));
-      await dispatch(fetchContacts());
+      dispatch(addContact(newElement));
+      dispatch(fetchContacts());
     }
 
     reset();
@@ -73,8 +73,9 @@ function ContactForm({ onClose }) {
   );
 }
 
-ContactForm.prototype = {
+ContactForm.proptype = {
   onSubmit: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
 };
 
 export default ContactForm;
