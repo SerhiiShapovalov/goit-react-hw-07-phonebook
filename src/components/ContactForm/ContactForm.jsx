@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { getContacts } from '../../redux/contactsSlice';
 import css from './ContactForm.module.css';
 
-function ContactForm({ onClose }) {
+function ContactForm() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -30,7 +30,6 @@ function ContactForm({ onClose }) {
     }
 
     reset();
-    onClose();
   };
 
   const reset = () => {
@@ -75,7 +74,6 @@ function ContactForm({ onClose }) {
 
 ContactForm.prototype = {
   onSubmit: PropTypes.func.isRequired,
-  onClose: PropTypes.func.isRequired,
 };
 
 export default ContactForm;
