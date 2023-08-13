@@ -1,8 +1,9 @@
-import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addContact, getContacts } from '../../redux/contactsSlice';
+import { addContact, fetchContacts } from '../../redux/contactsSlice';
+import PropTypes from 'prop-types';
+import { getContacts } from '../../redux/contactsSlice';
 import css from './ContactForm.module.css';
 
 function ContactForm({ onClose }) {
@@ -10,12 +11,12 @@ function ContactForm({ onClose }) {
   const [number, setNumber] = useState('');
 
   const onChangeName = e => setName(e.currentTarget.value);
-  const onChangeNunber = e => setNumber(e.currentTarget.value);
+  const onChangeNumber = e => setNumber(e.currentTarget.value);
 
   const contacts = useSelector(getContacts);
   const dispatch = useDispatch();
 
-  const onSubmitForm = e => {
+  const onSubmitForm = async e => {
     e.preventDefault();
 
     const newElement = { id: nanoid(), name, number };
@@ -24,7 +25,8 @@ function ContactForm({ onClose }) {
       window.alert(`${name} is already in the contact list.`);
       return;
     } else {
-      dispatch(addContact(newElement));
+      await dispatch(addContact(newElement));
+      await dispatch(fetchContacts());
     }
 
     reset();
@@ -55,7 +57,7 @@ function ContactForm({ onClose }) {
         <span className={css.title}>Number</span>
         <input
           className={css.input}
-          onChange={onChangeNunber}
+          onChange={onChangeNumber}
           type="tel"
           name="number"
           value={number}
