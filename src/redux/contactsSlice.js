@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+// import { persistReducer } from 'redux-persist';
+// import storage from 'redux-persist/lib/storage';
 
 export const fetchContacts = createAsyncThunk('contacts/fetchAll', async () => {
   const response = await fetch(
@@ -74,16 +74,7 @@ const contactsSlice = createSlice({
   },
 });
 
-const persistConfig = {
-  key: 'contacts',
-  storage,
-  blacklist: ['filter'],
-};
-
-export const persisteContactReducer = persistReducer(
-  persistConfig,
-  contactsSlice.reducer
-);
+export const contactsReducer = contactsSlice.reducer;
 
 export const { updateFilter } = contactsSlice.actions;
 
