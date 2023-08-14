@@ -8,7 +8,7 @@ import { configureStore } from '@reduxjs/toolkit';
 //   PURGE,
 //   REGISTER,
 // } from 'redux-persist';
-import { contactsReducer } from './contactsSlice';
+import { contactsReducer } from '../redux/contacts/slice';
 
 export const store = configureStore({
   reducer: {
